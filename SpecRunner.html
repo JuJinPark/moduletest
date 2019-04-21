@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner v3.3.0</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-3.3.0/jasmine_favicon.png">
+  <link rel="stylesheet" href="lib/jasmine-3.3.0/jasmine.css">
+
+  <script src="lib/jasmine-3.3.0/jasmine.js"></script>
+  <script src="lib/jasmine-3.3.0/jasmine-html.js"></script>
+  <script src="lib/jasmine-3.3.0/boot.js"></script>
+
+  <!-- include source files here... -->
+<!--   <script src="src/Player.js"></script>
+  <script src="src/Song.js"></script> -->
+<!--  <script src="src/ExampleCode.js"></script> -->
+
+  <!-- include spec files here... -->
+<!--   <script src="spec/SpecHelper.js"></script>
+  <script src="spec/PlayerSpec.js"></script> -->
+<!--   <script src="spec/test.js"></script> -->
+ <!--    <script src="src/app.js"></script> -->
+<script>
+
+
+ var exports=module.exports = (object, onChange) => {
+	const handler = {
+		get(target, property, receiver) {
+			try {
+				return new Proxy(target[property], handler);
+			} catch (err) {
+				return Reflect.get(target, property, receiver);
+			}
+		},
+		defineProperty(target, property, descriptor) {
+			onChange();
+			return Reflect.defineProperty(target, property, descriptor);
+		},
+		deleteProperty(target, property) {
+			onChange();
+			return Reflect.deleteProperty(target, property);
+		}
+	};
+
+	return new Proxy(object, handler);
+};
+let j = {
+	    a: 1
+	};
+let changeable = exports(j, function(){
+	alert("야호")
+});
+
+changeable.a = 2 
+
+
+
+
+</script>
+
+
+
+</head>
+
+
+<body>
+
+</body>
+</html>
